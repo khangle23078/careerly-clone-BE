@@ -10,6 +10,10 @@ const userSchema = new Schema<IUser>({
     type: String,
     unique: true,
   },
+  is_followed: {
+    type: Boolean,
+    default: false,
+  },
   password: {
     type: String,
   },

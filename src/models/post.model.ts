@@ -15,14 +15,12 @@ const postSchema = new Schema<IPost>(
       type: String,
       require: true,
     },
-    like_count: {
-      type: Types.ObjectId,
-      ref: 'User',
-    },
-    share_count: {
-      type: Types.ObjectId,
-      ref: 'User',
-    },
+    like_count: [
+      {
+        type: Types.ObjectId,
+        ref: 'User',
+      },
+    ],
     comments: [
       {
         user: {
