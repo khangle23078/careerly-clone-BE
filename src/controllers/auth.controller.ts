@@ -23,11 +23,11 @@ export const register = async (req: Request, res: Response) => {
       error: false,
       message: 'Register success!!',
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       status: 500,
       error: true,
-      message: error,
+      message: error.message,
     });
   }
 };
