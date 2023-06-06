@@ -20,3 +20,11 @@ export const getById = (id: string) => {
 export const insertOne = (data: IPost) => {
   return Post.create(data);
 };
+
+export const updateOne = (id: string, data: Omit<IPost, 'id'>) => {
+  return Post.findByIdAndUpdate(id, data, { new: true });
+};
+
+export const deleteOne = (id: string) => {
+  return Post.findByIdAndDelete(id, { new: true });
+};

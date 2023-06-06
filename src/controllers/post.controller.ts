@@ -1,5 +1,11 @@
 import { Request, Response } from 'express';
-import { getAll, getById, insertOne } from '../services/post.service';
+import {
+  deleteOne,
+  getAll,
+  getById,
+  insertOne,
+  updateOne,
+} from '../services/post.service';
 
 export const getPosts = async (req: Request, res: Response) => {
   try {
@@ -50,9 +56,45 @@ export const createPost = async (req: Request, res: Response) => {
   try {
     await insertOne(req.body);
     return res.status(201).json({
-      status: 200,
+      status: 201,
       error: false,
       message: 'Create post success',
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const updatePost = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await updateOne(id, req.body);
+    return res.status(200).json({
+      status: 200,
+      error: false,
+      message: 'Update post success',
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const deletePost = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await deleteOne(id);
+    return res.status(200).json({
+      status: 200,
+      error: false,
+      message: 'Delete post success',
     });
   } catch (error: any) {
     res.status(500).json({
