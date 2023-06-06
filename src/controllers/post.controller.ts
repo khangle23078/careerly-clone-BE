@@ -29,7 +29,9 @@ export const getPosts = async (req: Request, res: Response) => {
 export const getPost = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const post = getById(+id);
+    console.log(id);
+
+    const post = await getById(id);
     return res.status(200).json({
       status: 200,
       error: false,
