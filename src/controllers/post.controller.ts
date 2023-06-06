@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAll, getById } from '../services/post.service';
+import { getAll, getById, insertOne } from '../services/post.service';
 
 export const getPosts = async (req: Request, res: Response) => {
   try {
@@ -34,6 +34,23 @@ export const getPost = async (req: Request, res: Response) => {
       status: 200,
       error: false,
       data: post,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const createPost = async (req: Request, res: Response) => {
+  try {
+    await insertOne(req.body);
+    return res.status(201).json({
+      status: 200,
+      error: false,
+      message: 'Create post success',
     });
   } catch (error: any) {
     res.status(500).json({

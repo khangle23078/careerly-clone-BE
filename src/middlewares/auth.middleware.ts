@@ -13,17 +13,12 @@ export const verifyToken = (
         message: 'Unauthorized',
       });
     }
-
     const decoded = jwt.verify(token, process.env.SECRET_KEY as string);
-    if (!decoded) {
-      return res.status(401).json({
-        message: 'Invalid token',
-      });
-    }
+    req.user = decoded;
     next();
-  } catch (error) {
+  } catch (error: any) {
     return res.status(401).json({
-      message: 'Token is expired',
+      message: error.message,
     });
   }
 };
