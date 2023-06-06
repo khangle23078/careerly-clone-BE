@@ -23,18 +23,8 @@ const postSchema = new Schema<IPost>(
     ],
     comments: [
       {
-        user: {
-          type: Types.ObjectId,
-          ref: 'User',
-        },
-        content: {
-          type: String,
-          require: true,
-        },
-        create_At: {
-          type: Date,
-          default: new Date(),
-        },
+        type: Types.ObjectId,
+        ref: 'Comment',
       },
     ],
   },
