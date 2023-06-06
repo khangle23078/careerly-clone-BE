@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAll } from '../services/post.service';
+import { getAll, getById } from '../services/post.service';
 
 export const getPosts = async (req: Request, res: Response) => {
   try {
@@ -16,6 +16,24 @@ export const getPosts = async (req: Request, res: Response) => {
         itemPerPage: limit,
       },
       data: posts,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+    });
+  }
+};
+
+export const getPost = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const post = getById(+id);
+    return res.status(200).json({
+      status: 200,
+      error: false,
+      data: post,
     });
   } catch (error: any) {
     res.status(500).json({
