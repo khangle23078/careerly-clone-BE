@@ -7,14 +7,14 @@ export const getAll = (limit: number, skip: number) => {
     .skip(skip)
     .populate('author', '_id userName')
     .populate('like_count', '_id userName')
-    .populate('comments.user', '_id userName');
+    .populate('comments');
 };
 
 export const getById = (id: string) => {
   return Post.findById(id)
     .populate('author', '_id userName')
     .populate('like_count', '_id userName')
-    .populate('comments.user', '_id userName');
+    .populate('comments');
 };
 
 export const insertOne = (data: IPost) => {

@@ -21,12 +21,6 @@ const postSchema = new Schema<IPost>(
         ref: 'User',
       },
     ],
-    comments: [
-      {
-        type: Types.ObjectId,
-        ref: 'Comment',
-      },
-    ],
   },
   {
     timestamps: true,
