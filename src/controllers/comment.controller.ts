@@ -1,6 +1,23 @@
 import { Request, Response } from 'express';
 import Comment from '../models/comment.model';
-import { deleteById, editById } from '../services/comment.service';
+import { deleteById, editById, getAll } from '../services/comment.service';
+
+export const getComments = async (req: Request, res: Response) => {
+  try {
+    const comments = await getAll();
+    res.status(200).json({
+      status: 200,
+      error: false,
+      data: comments,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      status: 500,
+      error: true,
+      message: error.message,
+    });
+  }
+};
 
 export const createComment = async (req: Request, res: Response) => {
   try {
