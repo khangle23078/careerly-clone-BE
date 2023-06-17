@@ -6,6 +6,7 @@ import { connectDb } from './database/connect';
 import authRoute from './routes/auth.route';
 import postRoute from './routes/post.route';
 import commentRoute from './routes/comment.route';
+import uploadRoute from './routes/upload.route';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(morgan('combined'));
 app.use('/api', authRoute);
 app.use('/api', postRoute);
 app.use('/api', commentRoute);
+app.use('/api', uploadRoute);
 connectDb();
 
 export default app;
