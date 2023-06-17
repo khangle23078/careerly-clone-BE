@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { uploadFile } from '../controllers/upload.controllder';
+import { deleteFile, uploadFile } from '../controllers/upload.controllder';
 import { upload } from '../config/multer.config';
 
 const route = Router();
 
-route.post('/upload', upload.single('image'), uploadFile);
-
+route.post('/file/upload', upload.single('image'), uploadFile);
+route.post('/file/destroy', deleteFile);
 export default route;
